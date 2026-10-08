@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ResumePro – Smart Resume Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="logo" data-go="home">Resume<span>Pro</span></div>
+  <nav>
+    <a data-go="home" class="nav active">Home</a>
+    <a data-go="builder" class="nav">Create Resume</a>
+    <a data-go="templates" class="nav">Templates</a>
+    <a data-go="eligibility" class="nav">Job Eligibility</a>
+  </nav>
+  <button class="btn" data-go="builder">Get Started</button>
+</header>
+
+<!-- HOME -->
+<main id="home" class="page active">
+  <section class="hero">
+    <div class="hero-text">
+      <span class="pill">🚀 Smart Resume Builder</span>
+      <h1>Build Your <em>Professional Resume</em> in Minutes</h1>
+      <p>Create a professional resume, showcase your skills and projects, connect your GitHub and LinkedIn profiles, and discover career opportunities that match your skills.</p>
+      <div class="row-btns">
+        <button class="btn big" data-go="builder">Create My Resume →</button>
+        <button class="btn outline big" data-go="templates">Explore Templates</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="title">Choose Your <em>Template</em></h2>
+    <p class="sub">25 ready-made designs. Each one is made for a different kind of job.</p>
+    <div id="homeTemplates" class="tgrid"></div>
+    <div class="row-btns" style="justify-content:center"><button class="btn outline big" data-go="templates">View all 25 templates →</button></div>
+  </section>
+
+  <section class="block">
+    <h2 class="title">Everything You <em>Need</em></h2>
+    <div class="tgrid">
+      <div class="card"><h3>📝 Live Builder</h3><p>Fill the form and watch your resume update instantly on the right side.</p></div>
+      <div class="card"><h3>📎 Upload Certificates</h3><p>Add certificate images or PDFs and show them inside your resume.</p></div>
+      <div class="card"><h3>🎯 Job Eligibility</h3><p>Pick your field and qualification and see which jobs fit you, with a match %.</p></div>
+      <div class="card"><h3>⬇ Export PDF</h3><p>Download your finished resume as a clean PDF in one click.</p></div>
+    </div>
+  </section>
+</main>
+
+<!-- BUILDER -->
+<main id="builder" class="page">
+  <section class="panel form">
+    <h2>1. Choose Template</h2>
+    <select id="template"></select>
+    <p id="tplInfo" class="note"></p>
+
+    <h2>Style: Font, Color & Size</h2>
+    <div class="grid">
+      <div><label>Writing font</label>
+        <select id="fontSel">
+          <option value="">Template default</option>
+          <option value="Arial,sans-serif">Arial</option>
+          <option value="Calibri,Segoe UI,sans-serif">Calibri</option>
+          <option value="Verdana,sans-serif">Verdana</option>
+          <option value="Tahoma,sans-serif">Tahoma</option>
+          <option value="Trebuchet MS,sans-serif">Trebuchet</option>
+          <option value="Georgia,serif">Georgia</option>
+          <option value="Times New Roman,serif">Times New Roman</option>
+          <option value="Palatino Linotype,serif">Palatino</option>
+          <option value="Courier New,monospace">Courier New</option>
+          <option value="Consolas,monospace">Consolas</option>
+        </select></div>
+      <div><label>Font size: <span id="sizeVal">13</span>px</label><input type="range" id="sizeSel" min="10" max="18" value="13"></div>
+      <div><label>Theme color (headings)</label><input type="color" id="colorSel" value="#4f46e5"></div>
+      <div><label>Text color</label><input type="color" id="textSel" value="#222222"></div>
+    </div>
+    <button class="btn outline" id="resetStyle" type="button">Reset style</button>
+
+    <h2>2. Personal Details</h2>
+    <div class="grid">
+      <input id="name" placeholder="Full name">
+      <input id="title" placeholder="Job title (e.g. Electrical Engineer)">
+      <input id="email" placeholder="Email">
+      <input id="phone" placeholder="Phone">
+      <input id="location" placeholder="City, Country">
+      <input id="link" placeholder="LinkedIn / GitHub / Portfolio">
+    </div>
+    <textarea id="summary" placeholder="Professional summary (2-3 lines)"></textarea>
+
+    <h2>3. Skills</h2>
+    <input id="skills" placeholder="Comma separated skills: Python, AutoCAD, MATLAB, Verilog, Excel...">
+
+    <h2>4. Education</h2>
+    <textarea id="education" placeholder="One per line: B.Tech ECE / Mech / Civil / CSE | ABC College | 2025"></textarea>
+
+    <h2>5. Experience / Internships</h2>
+    <textarea id="experience" placeholder="One per line: Intern | XYZ Pvt Ltd | 2024 | What you worked on"></textarea>
+
+    <h2>6. Projects</h2>
+    <textarea id="projects" placeholder="One per line: Project name | Tools used | What you built"></textarea>
+
+    <h2>7. Achievements</h2>
+    <textarea id="achievements" placeholder="One per line: Won 1st prize in State Hackathon 2024"></textarea>
+
+    <h2>8. Certificates</h2>
+    <input type="file" id="certs" accept="image/*,.pdf" multiple>
+    <p class="note">Images appear in the resume. PDFs are listed by name.</p>
+
+    <div class="row-btns">
+      <button class="btn" id="exportBtn">⬇ Export / Save as PDF</button>
+      <button class="btn outline" id="clearBtn">Clear all</button>
+    </div>
+  </section>
+
+  <section class="panel preview-wrap">
+    <h2>Live Preview</h2>
+    <div id="resume" class="resume classic"></div>
+  </section>
+</main>
+
+<!-- TEMPLATES -->
+<main id="templates" class="page">
+  <section class="block">
+    <h2 class="title">Resume <em>Templates</em></h2>
+    <p class="sub">Read what each template is best for, then click "Use this template".</p>
+    <div id="tplGrid" class="tgrid"></div>
+  </section>
+</main>
+
+<!-- ELIGIBILITY -->
+<main id="eligibility" class="page">
+  <section class="panel wide">
+    <h2 class="title small">Check Your <em>Job Eligibility</em></h2>
+    <div class="grid">
+      <div>
+        <label>Field</label>
+        <select id="field">
+          <option value="web">Web Development</option>
+          <option value="cyber">Cyber Security</option>
+          <option value="data">Data Science</option>
+          <option value="cloud">Cloud & DevOps</option>
+          <option value="robotics">Control Systems & Robotics</option>
+          <option value="hardware">Hardware & Chip Design</option>
+          <option value="electrical">Electrical & Power</option>
+          <option value="mechanical">Mechanical & Manufacturing</option>
+          <option value="civil">Civil & Construction</option>
+          <option value="business">Business & Management</option>
+        </select>
+      </div>
+      <div>
+        <label>Qualification</label>
+        <select id="qual">
+          <option value="diploma">Diploma</option>
+          <option value="btech">B.Tech</option>
+          <option value="mtech">M.Tech</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="checkBtn">Show Eligible Jobs</button>
+    <p class="note">Tip: skills you enter in Create Resume increase your match percentage.</p>
+    <div id="results" class="cards"></div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
